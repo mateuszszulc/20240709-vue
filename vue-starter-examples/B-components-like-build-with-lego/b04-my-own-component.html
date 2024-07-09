@@ -49,11 +49,22 @@
       const { createApp, ref } = Vue;
 
       const MyOwnPart = {
-
+        props: {
+            yourTitle: {
+                type: String,
+                default: 'no text....'
+            }
+        },
+        emits: ['shoutText'],
+        template: /*html*/ `
+            <h2> {{yourTitle}} <button @click="$emit('shoutText', 'Hello My App')">Show Text</button></h2>
+        `
       }
 
       const app = createApp({
-        components: {},
+        components: {
+            MyOwnPart
+        },
         setup(){
 		    const yourTitle = ref('Hello Component')
 		    const componentSaid = ref('')
@@ -65,14 +76,15 @@
 	            }
             }
         },
-        template: `
+        template: /*html*/ `
             <main>
                 <h1>Przykład komunikacji z i do komponentu</h1>
                 <section class="component-wrapper">
-                    {{ 'Miejsce na Twój komponent' }}
+                    <MyOwnPart your-title="Hello" @shoutText="handleGreetings" />
+                    <MyOwnPart  />
                 </section>
                 <section>
-                    Informacja od komponentu: <strong>{{ componentSaid }}</strong>
+                    Informacja od komponentu: <strong>{{ your }}</strong>
                 </section>
             </main>
         `
