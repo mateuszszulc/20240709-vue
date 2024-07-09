@@ -41,7 +41,7 @@
                 </li>
             </ol>
             <ul>
-                <li v-for="(item, index) in shoppingList">
+                <li v-for="(item, index) of shoppingList">
                     <strong>{{ item.name }}</strong> - {{item.amount+item.unit}} | {{index}}
                 </li>
             </ul>
@@ -98,7 +98,7 @@
         <section>
             <h2><code>v-on</code> | Przykład użycia modyfikatorów (.prevent)</h2>
             <!-- https://vuejs.org/api/built-in-directives.html#v-on -->
-            <a href="http://wp.pl" v-on:click.prevent="shout('Helo wp.pl')"> powinno prowadzić do wp.pl? </a>
+            <a href="http://wp.pl" @click="shout($event,'hello wp.pl')"> powinno prowadzić do wp.pl? </a>
         </section>
     </main>
     <script>
@@ -117,8 +117,10 @@
                   {name: 'Klawiatura', amount: 1, unit: 'szt.'},
               ],
               // Metoda:
-              shout(text) {
-                  alert(text);
+              shout(ev, text) {
+                console.log(ev)
+                ev.preventDefault();
+                alert(text)
               }
             }
           }
