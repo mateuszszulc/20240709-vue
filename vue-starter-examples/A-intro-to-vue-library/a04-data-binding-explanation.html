@@ -30,7 +30,8 @@
             <img src="/nonexistingimage.png" v-bind:alt="altText">
         </div>
         <!-- <div class="box" v-on:mouseenter="isHeaderVisible = true" v-on:mouseleave="isHeaderVisible = false"> -->
-         <div class="box" v-on:mouseenter="showHader" v-on:mouseleave="hideHeader">
+        <!--  <div class="box" v-on:mouseenter="showHader" v-on:mouseleave="hideHeader"> -->
+         <div class="box" v-on:mouseenter="displayHeader(true)" v-on:mouseleave="displayHeader(false)">
             <header v-if="isHeaderVisible"> Sekretna wiadomość 🏴‍☠ </header>
         </div>
     </main>
@@ -48,6 +49,9 @@
               },
               hideHeader() {
                 isHeaderVisible.value = false
+              },
+              displayHeader(isVisible) {
+                isHeaderVisible.value = isVisible
               }
             }
           }
