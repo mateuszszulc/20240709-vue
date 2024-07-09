@@ -82,10 +82,14 @@
     <script>
 	    // Miejsce na komponent Footer:
 	    const TheFooter = {
+            components: {
+                TheHeader
+            },
             template: `
                 <footer style="text-align: center">
                     Copyright &copy; {{year}} Altkom Akademia
                 </footer>
+                <the-header> </the-header>
 		    `,
 		    name: 'TheFooter', // @hint: Vue sam przerobi zapis UpperCase na kebab-case na template do HTML!
             setup() {
