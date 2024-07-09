@@ -26,19 +26,21 @@
 
       const MyTitle = {
           props: {
-            superTitle: String // @hint: Tutaj określamy tzw props'a (nazwa i przeznaczenie podobne jak np. w React) i jego typ
+            superTitlez: String // @hint: Tutaj określamy tzw props'a (nazwa i przeznaczenie podobne jak np. w React) i jego typ
           },
           // Nie jest to konieczne, natomiast dla porządku określamy, jakie eventy może emitować ten komponent:
           emits: ['shout'],
           // Dzięki zastosowaniu $emit() mamy możliwość komunikacji "w górę"
           template: `
             <h2>
-                {{superTitle}}
-                <button @click="$emit('shout', superTitle)"> 🎉 </button>
+                {{superTitlez}}
+                <button @click="$emit('shout', superTitlez)"> 🎉 </button>
             </h2>
           `
       }
 
+      // props list === @Input() w Angular
+      // emits list === @Output() w Angular
 
       const app = createApp({
         components: {
@@ -52,17 +54,17 @@
 	            }
 	        }
         },
-        template: `
+        template: /*html*/ `
             <div>
                 <h1>Przykład komunikacji do komponentu</h1>
-                <my-title super-title="Hello World - przykładowy tytuł" @shout="shoutTheTitle($event)"></my-title>
+                <my-title super-titlez="Hello World - przykładowy tytuł" @shout="shoutTheTitle($event)"></my-title>
                 <pre>    UWAGA: Nasłuchujemy eventu tylko w komponencie powyżej! (patrz: @shout)
                 </pre>
                 <div>pamiętaj, że nie musimy przekazywać statycznych wartości, możemy coś zbindować:</div>
-                <my-title :super-title="applicationTitle"></my-title>
-                <my-title v-bind:super-title="applicationTitle"></my-title>
+                <my-title :super-titlez="applicationTitle"></my-title>
+                <my-title v-bind:super-titlez="applicationTitle" ></my-title>
                 <div>Pamiętaj, że bindowanie jest jak "otwarcie świata" JS po prawej stronie (w środku " ") </div>
-                <my-title :super-title=" 1 + 1 + '100' "></my-title>
+                <my-title :super-titlez=" 1 + 1 + '100' "></my-title>
             </div>
         `
       })

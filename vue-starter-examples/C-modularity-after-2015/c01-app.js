@@ -35,7 +35,7 @@ const app = createApp({
 		TheHeader,
 		OneFileComponent
 	},
-	template: `
+	template: /* html */ `
 		<main>
 			<!-- 
 				Pisząc HTML jako "Template" w środku świata JS - nie musisz stosować closing taga

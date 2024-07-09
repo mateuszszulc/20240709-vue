@@ -1,3 +1,5 @@
+.idea
+
 # gnerated directories (install, build)
 node_modules
 dist
