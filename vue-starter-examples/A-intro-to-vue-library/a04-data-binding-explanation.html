@@ -29,7 +29,8 @@
             <h6 title="myTitle">I porwónaj z klasykiem</h6>
             <img src="/nonexistingimage.png" v-bind:alt="altText">
         </div>
-        <div class="box" v-on:mouseenter="isHeaderVisible = true" v-on:mouseleave="isHeaderVisible = false">
+        <!-- <div class="box" v-on:mouseenter="isHeaderVisible = true" v-on:mouseleave="isHeaderVisible = false"> -->
+         <div class="box" v-on:mouseenter="showHader" v-on:mouseleave="hideHeader">
             <header v-if="isHeaderVisible"> Sekretna wiadomość 🏴‍☠ </header>
         </div>
     </main>
@@ -41,7 +42,13 @@
           	return {
               myTitle: 'To jest przykładowy tytuł zbindowany z widokiem',
               altText: 'Fajny obrazek',
-              isHeaderVisible
+              isHeaderVisible,
+              showHader() {
+                isHeaderVisible.value = true
+              },
+              hideHeader() {
+                isHeaderVisible.value = false
+              }
             }
           }
         })
