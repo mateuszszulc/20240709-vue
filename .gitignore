@@ -1,0 +1,7 @@
+# gnerated directories (install, build)
+node_modules
+dist
+
+# top theory files
+/*.pdf
+/*.html
