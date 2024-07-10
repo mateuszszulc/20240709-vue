@@ -1,9 +1,12 @@
 <script setup>
+import { string } from 'vue-types'
+
 defineProps({
-  title: {
-    type: String,
-    default: 'Auction Portal'
-  }
+  title: string().def('Auction Portal')
+  // title: {
+  //   type: String,
+  //   default: 'Auction Portal'
+  // }
 })
 </script>
 

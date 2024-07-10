@@ -1,22 +1,21 @@
 <script setup>
-/*
-{
-    id: number;
-    title: string;
-    imgUrl: string;
-    description: string;
-    price: number;
-}
-*/
+import { string, number, shape } from 'vue-types'
 defineProps({
-  auction: {
-    type: Object,
-    // required: true
-    // default() {
-    //   return { title: 'Przykład ' }
-    // },
-    default: () => ({ title: 'Przykład ' }) // zwracamy obiekt / factory function jako arrow
-  }
+  auction: shape({
+    id: number().isRequired,
+    title: string().isRequired,
+    imgUrl: string(),
+    description: string(),
+    price: number().isRequired
+  }).def(() => ({ title: 'Przykład ' }))
+  // auction: {
+  //   type: Object,
+  //   required: true,
+  //   // default() {
+  //   //   return { title: 'Przykład ' }
+  //   // },
+  //   default: () => ({ title: 'Przykład ' }) // zwracamy obiekt / factory function jako arrow
+  // }
 })
 
 // podpowiadanie składni po stronie parent componentu:
