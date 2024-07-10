@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import PageView from '@/components/PageView.vue'
+</script>
 
 <template>
-  <h2>Promocje</h2>
+  <PageView title="Promocje"> </PageView>
 </template>
