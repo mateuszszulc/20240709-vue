@@ -1,8 +1,7 @@
 <script setup>
 import AuctionCard from '@/components/auctions/AuctionCard.vue'
 import PageView from '@/components/PageView.vue'
-import { onMounted, ref } from 'vue'
-import { auctionsService } from '@/services/auctions-service'
+import { useAuctions } from '@/compositions/useAuctions'
 
 // level 1 : callback
 // level 2 : Promise
@@ -15,26 +14,7 @@ import { auctionsService } from '@/services/auctions-service'
 //   return axios.get('http://localhost:3000/auctions')
 // }
 
-const auctions = ref([])
-const isLoading = ref(false)
-const errorMessage = ref('')
-
-// Odbierz aukcje i przedstaw wszystkie z tablicy
-onMounted(async () => {
-  console.log('LifecycleMethod: mounted!')
-
-  try {
-    isLoading.value = true
-    const myAuctions = await auctionsService.getAll()
-    auctions.value = myAuctions.data
-  } catch (e) {
-    console.error(e)
-    errorMessage.value = e.message
-  } finally {
-    console.log('I will always fire')
-    isLoading.value = false
-  }
-})
+const { auctions, isLoading, errorMessage } = useAuctions()
 </script>
 
 <template>

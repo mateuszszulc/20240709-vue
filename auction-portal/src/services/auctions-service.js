@@ -8,5 +8,8 @@ const client = axios.create({
 export const auctionsService = {
     getAll() {
         return client.get('/auctions')
+    },
+    getPromotions() {
+        return client.get('/auctions?promoted=true')
     }
 }
