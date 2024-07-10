@@ -125,3 +125,38 @@ Dodaj obsługę funkcji `handleGoHomeClick` gdzie programistycznie obsużysz prz
 - [useRouter](https://router.vuejs.org/guide/advanced/composition-api.html#Accessing-the-Router-and-current-Route-inside-setup)
 
 - [Programmatic Navigation](https://router.vuejs.org/guide/essentials/navigation.html#Programmatic-Navigation)
+
+### Zadanie #3 | Dodanie ikon do projektu
+
+> (3rd party lib z komponentem)
+
+#### 3.1 👇 Doinstaluj dodatkowe packages z `@fortawesome`:
+
+- `@fortawesome/fontawesome-svg-core`
+- `@fortawesome/free-solid-svg-icons`
+- `@fortawesome/vue-fontawesome`
+
+> 💡HINT  
+> możesz to zrobić jedną komedną:  
+> `npm i nazwa_lib_1 nazwa_lib_2 nazwa_lib_3`
+
+#### 3.2 👇
+
+Użyj przykładowej ikony w `button`'ie komponentu [AuctionCard.vue](./src/components/auctions/AuctionCard.vue) za pomocą komponentu `FontAwesomeIcon`:
+
+- setup:
+
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+```
+
+- template:
+
+```html
+...
+<button class="btn btn-primary" @click="$emit('addToCart', auction)">
+  <!-- dodany kod: -->
+  <FontAwesomeIcon :icon="faCartPlus" />
+</button>
+```
