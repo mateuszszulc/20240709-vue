@@ -2,6 +2,7 @@
 import AuctionCard from '@/components/auctions/AuctionCard.vue'
 import PageView from '@/components/PageView.vue'
 import { onMounted, ref } from 'vue'
+import axios from 'axios'
 
 // level 1 : callback
 // level 2 : Promise
@@ -9,21 +10,9 @@ import { onMounted, ref } from 'vue'
 
 // Symulacja sciagania z backendu:
 async function getAuctions() {
-  return [
-    {
-      id: 36,
-      title: 'Części do aparatu',
-      imgUrl: 'https://picsum.photos/id/36/600/600',
-      description: 'Jakiś opis',
-      price: 2000
-    },
-    {
-      id: 90,
-      title: 'Części',
-      imgUrl: 'https://picsum.photos/id/90/600/600',
-      price: 1000
-    }
-  ]
+  // const data = await fetch('http://localhost:3000/auctions/900')
+  // return data.json()
+  return axios.get('http://localhost:3000/auctions')
 }
 
 /*
@@ -57,8 +46,8 @@ onMounted(async () => {
   */
 
   try {
-    const data = await getAuctions()
-    auctions.value = data
+    const myAuctions = await getAuctions()
+    auctions.value = myAuctions.data
   } catch (e) {
     console.error(e)
   } finally {
