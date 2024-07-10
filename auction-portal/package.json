@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --open --port 5100",
+    "dev-backend": "json-server backend/fake-db.json",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -26,6 +27,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "jsdom": "^24.1.0",
+    "json-server": "^1.0.0-beta.1",
     "prettier": "^3.2.5",
     "vite": "^5.3.1",
     "vite-plugin-vue-devtools": "^7.3.1",
