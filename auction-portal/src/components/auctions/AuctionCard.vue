@@ -18,6 +18,9 @@ defineProps({
     default: () => ({ title: 'Przykład ' }) // zwracamy obiekt / factory function jako arrow
   }
 })
+
+// podpowiadanie składni po stronie parent componentu:
+defineEmits(['addToCart'])
 </script>
 
 <template>
