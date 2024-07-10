@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
 
 const isMenuOpen = ref(false)
@@ -15,13 +16,15 @@ function toggleMenu() {
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" @click="toggleMenu()" >
+    <button class="navbar-toggler" type="button" @click="toggleMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" :class="{ show: isMenuOpen }">
       <ul class="navbar-nav">
         <li class="nav-item" v-for="item of menuItems" :key="item.href">
-          <a class="nav-link" :href="item.href">{{ item.title }}</a>
+          <RouterLink activeClass="active" class="nav-link" :to="item.href">
+            {{ item.title }}
+          </RouterLink>
         </li>
       </ul>
     </div>
