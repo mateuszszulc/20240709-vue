@@ -11,11 +11,7 @@ import TheMainMenu from "@/components/TheMainMenu.vue";
   />
   <img class="logo" src="./assets/logo.svg" alt="vue logo" />
   <TheMainMenu />
-  <RouterView v-slot="{ Component }">
-    <transition name="slide" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </RouterView>
+  <RouterView />
 </template>
 
 <style scoped>

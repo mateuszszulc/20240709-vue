@@ -9,7 +9,7 @@ import TheMainMenu from '@/components/TheMainMenu.vue'
   <TheHeader />
   <main class="container">
     <TheMainMenu />
-    <!-- <RouterView /> -->
+    <RouterView />
   </main>
 </template>
 
