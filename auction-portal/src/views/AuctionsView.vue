@@ -1,7 +1,7 @@
 <script setup>
 import AuctionCard from '@/components/auctions/AuctionCard.vue'
 import PageView from '@/components/PageView.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 // level 1 : callback
 // level 2 : Promise
@@ -41,8 +41,29 @@ Promise.resolve([
 const auctions = ref([])
 
 // Odbierz aukcje i przedstaw wszystkie z tablicy
-getAuctions().then((data) => {
-  auctions.value = data
+onMounted(async () => {
+  console.log('LifecycleMethod: mounted!')
+  /*
+  getAuctions()
+    .then((data) => {
+      auctions.value = data
+    })
+    .catch((e) => {
+      console.error(e)
+    })
+    .finally(() => {
+      console.log('I will always fire')
+    })
+  */
+
+  try {
+    const data = await getAuctions()
+    auctions.value = data
+  } catch (e) {
+    console.error(e)
+  } finally {
+    console.log('I will always fire')
+  }
 })
 </script>
 
