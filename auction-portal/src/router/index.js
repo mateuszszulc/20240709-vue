@@ -2,6 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AuctionsView from '../views/AuctionsView.vue'
 import PromotionsView from '../views/PromotionsView.vue'
 
+// zaimportowane z osobnego pliku może byc
+const otherModulePaths = [
+  {
+    path: '/promotions',
+    name: 'promotions',
+    component: PromotionsView
+  }
+]
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -14,11 +23,7 @@ const router = createRouter({
       name: 'auctions',
       component: AuctionsView
     },
-    {
-      path: '/promotions',
-      name: 'promotions',
-      component: PromotionsView
-    },
+    ...otherModulePaths,
     {
       path: '/advices',
       name: 'advices',
