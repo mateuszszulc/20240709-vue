@@ -1,5 +1,7 @@
 <script setup>
+import AuctionCard from '@/components/auctions/AuctionCard.vue'
 import PageView from '@/components/PageView.vue'
+import { ref } from 'vue'
 
 // level 1 : callback
 // level 2 : Promise
@@ -35,29 +37,21 @@ Promise.resolve([
   }
 ])
 */
+
+const auctions = ref([])
+
 // Odbierz aukcje i przedstaw wszystkie z tablicy
-getAuctions().then((auctions) => {
-  console.log(auctions)
+getAuctions().then((data) => {
+  auctions.value = data
 })
 </script>
 
 <template>
   <PageView title="Nasze Aukcje">
-    Jakiś komponent do wyswietlenia jednej aukcji....
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="item of auctions" :key="item.id">
         <!-- nazwij i zrob z tego komponent: pojedynczy props "auction" -->
-        <div class="card">
-          <div class="card-header">Tytuł</div>
-          <img class="card-img" src="" alt="" />
-          <div class="card-body">
-            <p class="card-text">Opis aukcji</p>
-            <div class="d-flex justify-content-between align-content-center">
-              <strong> 0 zł</strong>
-              <button class="btn btn-primary"></button>
-            </div>
-          </div>
-        </div>
+        <AuctionCard :auction="item" />
       </div>
     </div>
   </PageView>
