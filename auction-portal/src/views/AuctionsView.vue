@@ -28,6 +28,8 @@ Promise.resolve([
 */
 
 const auctions = ref([])
+const isLoading = ref(false)
+const errorMessage = ref('')
 
 // Odbierz aukcje i przedstaw wszystkie z tablicy
 onMounted(async () => {
@@ -46,12 +48,15 @@ onMounted(async () => {
   */
 
   try {
+    isLoading.value = true
     const myAuctions = await getAuctions()
     auctions.value = myAuctions.data
   } catch (e) {
     console.error(e)
+    errorMessage.value = e.message
   } finally {
     console.log('I will always fire')
+    isLoading.value = false
   }
 })
 </script>
@@ -59,6 +64,12 @@ onMounted(async () => {
 <template>
   <PageView title="Nasze Aukcje">
     <div class="row">
+      <div class="col-12" v-if="isLoading">
+        <div class="alert alert-info">Ładuję aukcje...</div>
+      </div>
+      <div class="col-12" v-if="errorMessage">
+        <div class="alert alert-danger">Wystąpił błąd: {{ errorMessage }}</div>
+      </div>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="item of auctions" :key="item.id">
         <!-- nazwij i zrob z tego komponent: pojedynczy props "auction" -->
         <AuctionCard :auction="item" />

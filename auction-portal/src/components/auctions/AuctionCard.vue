@@ -2,7 +2,7 @@
 import { string, number, shape } from 'vue-types'
 defineProps({
   auction: shape({
-    id: number().isRequired,
+    id: string().isRequired,
     title: string().isRequired,
     imgUrl: string(),
     description: string(),
