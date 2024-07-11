@@ -12,12 +12,13 @@ const cartStore = useCartStore()
         Twój koszyk jest pusty.
       </div>
       <div v-else>
-        <div v-for="item in cartStore.items" :key="item.id" class="cart-item">
-          <img :src="item.imgUrl" alt="" class="cart-item-img" />
+        <div v-for="{ auction, count, id } in cartStore.items" :key="id" class="cart-item">
+          <span class="badge text-bg-primary rounded-pill">{{ count }}</span>
+          <img :src="auction.imgUrl" alt="" class="cart-item-img" />
           <div class="cart-item-details">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.description }}</p>
-            <strong>{{ item.price }} zł</strong>
+            <h3>{{ auction.title }}</h3>
+            <p>{{ auction.description }}</p>
+            <strong>{{ auction.price }} zł</strong>
           </div>
         </div>
       </div>

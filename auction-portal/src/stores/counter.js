@@ -11,6 +11,23 @@ export const useCounterStore = defineStore('counter', () => {
   return { count, doubleCount, increment }
 })
 
+// albo w Pinia bardziej jak w Options API:
+/*
+  export const useCounterStore = defineStore('counter', {
+    state: () => ({
+      count: 0,
+    }),
+    getters: {
+      doubleCount: (state) => state.count * 2,
+    },
+    actions: {
+      increment() {
+        this.count++
+      }
+    }
+  })
+ */
+
 
 // Zadanie:
 // Wykonaj cart.js jako store
