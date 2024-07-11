@@ -1,6 +1,8 @@
 <script setup>
 import PageView from '@/components/PageView.vue'
 import { computed, reactive } from 'vue'
+import { useVuelidate } from '@vuelidate/core'
+import { required, minValue } from '@vuelidate/validators'
 
 // używajac v-model => zbierz wartości formularza w jeden obiekt (przyszła aukcja)
 // do img uzyj computed property i zmieniaj je po lewej stornie:
@@ -18,7 +20,20 @@ const formState = reactive({
 
 const imgUrl = computed(() => `https://picsum.photos/id/${formState.imgId}/600/600`)
 
-function handleFormSubmit() {
+const v$ = useVuelidate(
+  {
+    title: { required, $autoDirty: true },
+    imgId: { required, minValue: minValue(1), $autoDirty: true },
+    price: { required, minValue: minValue(1), $autoDirty: true }
+  },
+  formState
+)
+
+async function handleFormSubmit() {
+  const isOk = await v$.value.$validate()
+  if (!isOk) {
+    return
+  }
   console.log(formState)
 }
 </script>
@@ -28,9 +43,10 @@ function handleFormSubmit() {
     <section class="row">
       <div class="col-6">
         <img class="img-thumbnail" alt="Podgląd fotografii" :src="imgUrl" />
+        {{ v$ }}
       </div>
       <div class="col-6">
-        <form @submit.prevent="handleFormSubmit">
+        <form @submit.prevent="handleFormSubmit" novalidate>
           <div class="form-group">
             <label for="auctionTitle">Nazwa aukcji</label>
             <div class="input-group mb-3">
@@ -46,7 +62,12 @@ function handleFormSubmit() {
                 required
                 class="form-control"
                 v-model="formState.title"
+                @blur="v$.title.$touch"
               />
+              <!--  @blur="v$.title.$touch" niepotrzebne bo $autoDirty -->
+            </div>
+            <div class="alert alert-danger" v-if="v$.title.$error">
+              <span v-for="{ $uid, $message } of v$.title.$errors" :key="$uid">{{ $message }}</span>
             </div>
           </div>
 
