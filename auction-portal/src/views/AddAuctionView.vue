@@ -3,20 +3,21 @@ import PageView from '@/components/PageView.vue'
 import { computed, reactive } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, minValue } from '@vuelidate/validators'
+import { auctionsService } from '@/services/auctions-service'
 
 // używajac v-model => zbierz wartości formularza w jeden obiekt (przyszła aukcja)
 // do img uzyj computed property i zmieniaj je po lewej stornie:
 // zwróc uwage na to czy Twoj fomularz zachowuje sie poprawnie w kontekscie SPA
 // pamieta o <form onsubmit> natywnie
 
-//
-
-const formState = reactive({
+const EMPTY_STATE = () => ({
   title: '',
   imgId: 1,
   description: '',
   price: 1
 })
+
+const formState = reactive(EMPTY_STATE())
 
 const imgUrl = computed(() => `https://picsum.photos/id/${formState.imgId}/600/600`)
 
@@ -34,7 +35,17 @@ async function handleFormSubmit() {
   if (!isOk) {
     return
   }
-  console.log(formState)
+  try {
+    await auctionsService.add({
+      ...formState,
+      imgUrl: imgUrl.value,
+      imgId: undefined
+    })
+    Object.assign(formState, EMPTY_STATE())
+    v$.value.$reset()
+  } catch (e) {
+    console.error(e)
+  }
 }
 </script>
 

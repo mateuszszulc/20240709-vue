@@ -12,5 +12,8 @@ export const auctionsService = {
     },
     getPromotions() {
         return client.get('/auctions?promoted=true')
+    },
+    add(auction) {
+        return client.post('/auctions', auction)
     }
 }
