@@ -3,6 +3,7 @@ import AuctionsView from '../views/AuctionsView.vue'
 import PromotionsView from '../views/PromotionsView.vue'
 import AddAuctionView from '../views/AddAuctionView.vue'
 import CartView from '../views/CartView.vue'
+import NotFound404 from '../views/NotFound404.vue'
 
 
 // zaimportowane z osobnego pliku może byc
@@ -42,7 +43,11 @@ const router = createRouter({
     {
       path: '/cart',
       component: CartView
-    }
+    },
+    { 
+      path: '/:pathMatch(.*)*', 
+      component: NotFound404 
+    },
   ]
 })
 
