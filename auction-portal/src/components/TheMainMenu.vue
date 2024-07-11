@@ -29,8 +29,12 @@ function toggleMenu() {
       </ul>
     </div>
     <div>
-      <RouterLink class="btn btn-primary mx-1 mx-sm-2" to="/add-auction"> Dodaj </RouterLink>
-      <RouterLink class="btn btn-secondary" to="/cart"> Koszyk </RouterLink>
+      <RouterLink class="btn btn-primary mx-1 mx-sm-2" to="/add-auction">
+        <fa-icon icon="fa-plus" /> Dodaj
+      </RouterLink>
+      <RouterLink class="btn btn-secondary" to="/cart">
+        <fa-icon icon="fa-shopping-basket" /> Koszyk
+      </RouterLink>
     </div>
   </nav>
 </template>
