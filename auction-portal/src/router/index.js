@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, useRoute } from 'vue-router'
 import AuctionsView from '../views/AuctionsView.vue'
 import PromotionsView from '../views/PromotionsView.vue'
 import AddAuctionView from '../views/AddAuctionView.vue'
@@ -25,7 +25,7 @@ const router = createRouter({
     {
       path: '/auctions',
       name: 'auctions',
-      component: AuctionsView
+      component: AuctionsView,
       // component: { setup: () => () => 'test' }
     },
     ...otherModulePaths,
@@ -35,7 +35,19 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AdvicesView.vue')
+      component: () => import('../views/AdvicesView.vue'),
+      children: [
+        {
+          // Wyjaśnienie dynamicznych parametrów:
+          path: ':uuid',
+          component: {
+            setup() {
+              const route = useRoute();
+              return () => `${JSON.stringify(route.params)}`
+            }
+          },
+        }
+      ]
     },
     {
       path: '/add-auction',

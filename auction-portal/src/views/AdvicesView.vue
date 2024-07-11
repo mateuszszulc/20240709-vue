@@ -10,5 +10,6 @@ import PageView from '@/components/PageView.vue'
       maxime numquam dolore placeat repudiandae!
     </p>
     <!-- <template v-slot:header> ..HEADER.. </template> -->
+    <RouterView />
   </PageView>
 </template>
