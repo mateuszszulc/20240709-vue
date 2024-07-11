@@ -1,4 +1,6 @@
 <script setup>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 import { string, number, shape } from 'vue-types'
 defineProps({
   auction: shape({
@@ -30,7 +32,9 @@ defineEmits(['addToCart'])
       <p class="card-text">{{ auction.description }}</p>
       <div class="d-flex justify-content-between align-content-center">
         <strong> {{ auction.price }} zł</strong>
-        <button class="btn btn-primary" @click="$emit('addToCart', auction)"></button>
+        <button class="btn btn-primary" @click="$emit('addToCart', auction)">
+          <FontAwesomeIcon :icon="faCartPlus" />
+        </button>
       </div>
     </div>
   </div>
