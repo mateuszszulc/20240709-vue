@@ -1,7 +1,9 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
+import { useCartStore } from '@/stores/cart';
 
+const cartStore = useCartStore()
 const isMenuOpen = ref(false)
 const menuItems = [
   { href: '/auctions', title: 'Aukcje' },
@@ -33,7 +35,7 @@ function toggleMenu() {
         <fa-icon icon="fa-plus" /> Dodaj
       </RouterLink>
       <RouterLink class="btn btn-secondary" to="/cart">
-        <fa-icon icon="fa-shopping-basket" /> Koszyk
+        <fa-icon icon="fa-shopping-basket" /> Koszyk ({{cartStore.getItemsCount}})
       </RouterLink>
     </div>
   </nav>

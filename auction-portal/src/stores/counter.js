@@ -10,3 +10,18 @@ export const useCounterStore = defineStore('counter', () => {
 
   return { count, doubleCount, increment }
 })
+
+
+// Zadanie:
+// Wykonaj cart.js jako store
+// dodaj akcje:
+// 1. addItem
+// zwracaj elementy:
+// 2. items - elementy koszyka
+// 3. getItemsCount - iloś elementow w koszyku
+
+{/* <script setup>
+  const cart = useCartStore();
+
+  cart.items
+  </script> */}

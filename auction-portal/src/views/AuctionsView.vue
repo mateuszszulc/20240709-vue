@@ -2,6 +2,7 @@
 import AuctionCard from '@/components/auctions/AuctionCard.vue'
 import PageView from '@/components/PageView.vue'
 import { useAuctions } from '@/compositions/useAuctions'
+import { useCartStore } from '@/stores/cart'
 
 // level 1 : callback
 // level 2 : Promise
@@ -15,6 +16,11 @@ import { useAuctions } from '@/compositions/useAuctions'
 // }
 
 const { auctions, isLoading, errorMessage } = useAuctions()
+const cart = useCartStore()
+
+function handleAddToCart(auction) {
+  cart.addItem(auction)
+}
 </script>
 
 <template>
@@ -28,7 +34,7 @@ const { auctions, isLoading, errorMessage } = useAuctions()
       </div>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="item of auctions" :key="item.id">
         <!-- nazwij i zrob z tego komponent: pojedynczy props "auction" -->
-        <AuctionCard :auction="item" />
+        <AuctionCard :auction="item" @add-to-cart="handleAddToCart" />
       </div>
     </div>
   </PageView>
