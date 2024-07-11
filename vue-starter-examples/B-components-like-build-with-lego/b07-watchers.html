@@ -32,11 +32,17 @@
             setup() {
 			    const answer = ref(0);
 			    const text = ref('Trochę za mało...');
-	            watch(answer, (newAnswer/*, prevAnswer*/) => {
+	            watch(answer, async (newAnswer/*, prevAnswer*/) => {
                     if(newAnswer === RIGHT_ANSWER) {
                         text.value = 'Brawo! Prawidłowa odpowiedź!'
+                        try {
+                          await quessingGameService.userGuessedRight()  
+                        } catch (e) {
+                            
+                        }
                     } else if (newAnswer > RIGHT_ANSWER){
                         text.value = 'Oj... za dużo !'
+                        
                     } else {
                         text.value = 'Trochę za mało...'
                     }

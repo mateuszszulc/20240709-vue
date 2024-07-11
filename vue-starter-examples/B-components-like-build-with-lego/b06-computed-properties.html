@@ -30,10 +30,11 @@
           `,
           setup() {
             const timeOfTheDay = ref('dzisiaj');
-			const actualWeather = computed(() => `${timeOfTheDay.value} padało`)
+			      const actualWeather = computed(() => `${timeOfTheDay.value} padało`)
             const changeTimeOfTheDay = () => {
-				timeOfTheDay.value = timeOfTheDay.value === 'dzisiaj' ? 'wczoraj' : 'dzisiaj';
+				      timeOfTheDay.value = timeOfTheDay.value === 'dzisiaj' ? 'wczoraj' : 'dzisiaj';
             }
+            console.log(actualWeather.value = 10)
             return { actualWeather, changeTimeOfTheDay }
           }
       }
