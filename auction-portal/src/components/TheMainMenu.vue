@@ -28,5 +28,9 @@ function toggleMenu() {
         </li>
       </ul>
     </div>
+    <div>
+      <RouterLink class="btn btn-primary mx-1 mx-sm-2" to="/add-auction"> Dodaj </RouterLink>
+      <RouterLink class="btn btn-secondary" to="/cart"> Koszyk </RouterLink>
+    </div>
   </nav>
 </template>
