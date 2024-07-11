@@ -37,3 +37,9 @@ defineEmits(['addToCart'])
     </div>
   </div>
 </template>
+
+
+// zadanie:
+// przygotuj test do tego AuctionCart, skorzystaj z test-utils i osadz
+// 1. sprawdz poprawnosc renderowania aukcji
+// 2. sprawdz czy po kliknieciu aukcja waca przez event
