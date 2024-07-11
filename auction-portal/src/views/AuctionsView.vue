@@ -27,7 +27,7 @@ function handleAddToCart(auction) {
   <PageView title="Nasze Aukcje">
     <div class="row">
       <div class="col-12" v-if="isLoading">
-        <div class="alert alert-info">Ładuję aukcje...</div>
+        <div class="alert alert-info"><fa-icon icon="fa-spinner" spin /> Ładuję aukcje...</div>
       </div>
       <div class="col-12" v-if="errorMessage">
         <div class="alert alert-danger">Wystąpił błąd: {{ errorMessage }}</div>

@@ -43,7 +43,6 @@ async function handleFormSubmit() {
     <section class="row">
       <div class="col-6">
         <img class="img-thumbnail" alt="Podgląd fotografii" :src="imgUrl" />
-        {{ v$ }}
       </div>
       <div class="col-6">
         <form @submit.prevent="handleFormSubmit" novalidate>
@@ -61,6 +60,7 @@ async function handleFormSubmit() {
                 name="title"
                 required
                 class="form-control"
+                :class="{ 'is-invalid': v$.title.$error }"
                 v-model="formState.title"
                 @blur="v$.title.$touch"
               />
@@ -75,7 +75,9 @@ async function handleFormSubmit() {
             <label for="auctionPrice">Cena aukcji</label>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text"> </span>
+                <span class="input-group-text">
+                  <fa-icon icon="fa-tag" />
+                </span>
               </div>
               <input
                 id="auctionPrice"
@@ -84,7 +86,12 @@ async function handleFormSubmit() {
                 required
                 class="form-control"
                 v-model="formState.price"
+                :class="{ 'is-invalid': v$.price.$error }"
+                @blur="v$.price.$touch"
               />
+            </div>
+            <div class="alert alert-danger" v-if="v$.price.$error">
+              <span v-for="{ $uid, $message } of v$.price.$errors" :key="$uid">{{ $message }}</span>
             </div>
           </div>
 
@@ -92,7 +99,9 @@ async function handleFormSubmit() {
             <label for="img">Zdjecie</label>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text"> </span>
+                <span class="input-group-text">
+                  <fa-icon icon="fa-image" />
+                </span>
               </div>
               <input
                 id="img"
@@ -118,7 +127,13 @@ async function handleFormSubmit() {
             </div>
           </div>
           <div class="text-right">
-            <button class="btn btn-primary" type="submit">Dodaj aukcję</button>
+            <button
+              class="btn btn-primary"
+              type="submit"
+              :style="{ opacity: v$.$invalid ? 0.5 : 1 }"
+            >
+              <fa-icon icon="fa-gavel" /> Dodaj aukcję
+            </button>
           </div>
         </form>
       </div>
