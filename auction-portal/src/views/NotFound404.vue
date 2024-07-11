@@ -11,6 +11,7 @@ function handleGoHomeClick() {
 
 <template>
   <PageView title="😭 --[404]--">
+    {{ $route }}
     <div class="alert alert-warning">
       Nie posiadam strony: <code>{{ $route.fullPath }}</code>
     </div>

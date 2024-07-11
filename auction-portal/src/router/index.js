@@ -44,9 +44,12 @@ const router = createRouter({
       path: '/cart',
       component: CartView
     },
-    { 
-      path: '/:pathMatch(.*)*', 
-      component: NotFound404 
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFound404,
+      meta: {
+        requireAuth: false
+      }
     },
   ]
 })
